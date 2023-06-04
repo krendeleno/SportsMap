@@ -1,0 +1,24 @@
+.ClustererMenu {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ClustererMenu-Item {
+    cursor: pointer;
+    padding: var(--padding-xs) var(--padding-m);
+    border-radius: var(--border-radius-m);
+    transition: background-color .1s linear;
+}
+
+.ClustererMenu-Item:hover {
+    background-color: var(--decorative-color);
+}
+
+.ClustererMenu-List {
+    overflow-y: auto;max-width: calc(100vw - var(--space-m) * 2);
+    max-height: calc(50vh - 9rem);
+    margin: 0;
+}

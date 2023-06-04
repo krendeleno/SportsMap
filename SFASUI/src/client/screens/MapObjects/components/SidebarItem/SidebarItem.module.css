@@ -9,12 +9,13 @@
     column-gap: var(--space-l);
 
     box-sizing: border-box;
-    padding: var(--padding-m);
     width:100%;
+    margin: 1px;
+    padding: var(--padding-m);
+
     background-color: var(--white-color);
     border-radius: var(--border-radius-l);
     box-shadow: var(--box-shadow-default);
-
 }
 
 .SidebarItem path {
@@ -26,15 +27,16 @@
 }
 
 .SidebarItem-Photo {
-    grid-area: photo;
-    width: 135px;
-    height: 135px;
-    border-radius: var(--border-radius-l);
-    background-color: var(--decorative-color);
-
     display: none;
+    grid-area: photo;
     align-items: center;
     justify-content: center;
+
+    width: 135px;
+    height: 135px;
+
+    background-color: var(--decorative-color);
+    border-radius: var(--border-radius-l);
 }
 
 .SidebarItem-Photo_light path,  .SidebarItem-Photo_light circle {
@@ -44,6 +46,7 @@
 .SidebarItem-Photo_dark path,  .SidebarItem-Photo_dark circle {
     color: var(--base-additional-color);
 }
+
 .SidebarItem-Name {
     grid-area: name;
     width: 100%;
@@ -72,12 +75,12 @@
 
 @media (--viewport-tablet) {
     .SidebarItem {
-        width: var(--width-map-sidebar);
         grid-template-areas:
         'name photo'
         'age photo'
         'address photo';
         grid-template-columns: 1fr 135px;
+        width: var(--width-map-sidebar);
         box-shadow: none;
 
     }

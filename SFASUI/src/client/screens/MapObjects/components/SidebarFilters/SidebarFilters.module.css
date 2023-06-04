@@ -23,6 +23,11 @@ button.SidebarFilters-Toggle {
     height: 37px;
     padding: var(--space-xs);
     box-sizing: border-box;
+
+}
+
+.SidebarFilters-Toggle path {
+    color: var(--base-additional-color);
 }
 
 button.SidebarFilters-Toggle_closed {

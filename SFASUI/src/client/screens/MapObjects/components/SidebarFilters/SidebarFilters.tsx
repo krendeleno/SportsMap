@@ -10,6 +10,9 @@ import { Drawer } from 'src/client/shared/components/Drawer';
 
 import { useFilters } from './SidebarFilters.hooks';
 
+import FiltersIcon from 'public/icons/filters_default.svg';
+import FiltersActiveIcon from 'public/icons/filters_active.svg';
+
 import styles from './SidebarFilters.module.css';
 
 export const SidebarFilters = () => {
@@ -46,14 +49,7 @@ export const SidebarFilters = () => {
                     styles['SidebarFilters-Toggle'],
                     isOpen ? styles['SidebarFilters-Toggle_open'] : styles['SidebarFilters-Toggle_closed'],
                 ].join(' ')}
-                icon={
-                    <Image
-                        width={38}
-                        height={38}
-                        src={isOpen ? '/icons/filters_active.svg' : '/icons/filters_default.svg'}
-                        layout="fixed"
-                    />
-                }
+                icon={isOpen ? <FiltersActiveIcon width={38} height={38} /> : <FiltersIcon width={38} height={38} />}
             />
             {isOpen && <div className={styles['SidebarFilters_desktop']}>{filtersComponent}</div>}
             <Drawer

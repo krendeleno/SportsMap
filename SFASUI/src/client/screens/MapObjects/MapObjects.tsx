@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Clusterer, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -13,6 +13,8 @@ import { Sidebar } from './components/Sidebar';
 import { getPlacemarkIcon, getSearchQuery } from './MapObjects.helpers';
 
 import styles from './MapObject.module.css';
+import { ClustererMenu } from './components/ClustererMenu';
+import { FacilityType } from "../../shared/types/facilities";
 
 export type MapObjectsPageProps = {
     facilityObjects?: SearchFacilities.Response;
@@ -23,7 +25,7 @@ export const MapObjects = ({
     facilityObjects: initialFacilityObjects,
     facilityObjectsQuery: initialFacilityObjectsQuery,
 }: MapObjectsPageProps) => {
-    const { query, push } = useRouter();
+    const { query } = useRouter();
     const searchQuery = getSearchQuery(query);
 
     const {
@@ -61,14 +63,44 @@ export const MapObjects = ({
 
     const onOpenItem = useCallback((item: Definitions.FacilityResponse | null) => {
         if (item && mapRef.current) {
-            mapRef.current.options.set('maxAnimationZoomDifference', Infinity);
-            mapRef.current.panTo([item.x, item.y]).then(() => mapRef.current.setZoom(18, { duration: 500 }));
+            mapRef.current.panTo([item.x, item.y]);
         }
         setActiveItem(item);
         setIsDrawerOpen(true);
     }, []);
 
+    const [clustererItems, setClustererItems] = useState([]);
+    const [isClustererMenuOpen, setIsClustererMenuOpen] = useState(false);
+
+    const onClustererClick = useCallback(
+        (event: any) => {
+            // если зум слишком большой, то карта приблизится и кластеры превратятся в placemark,
+            // попап не нужен
+            if (mapRef.current && mapRef.current.getZoom() < 21) {
+                return;
+            }
+
+            const target = event.get('target');
+
+            // если это placemark, то не показываем попап
+            if (target.options._name !== 'cluster') {
+                return;
+            }
+
+            const items = target.getGeoObjects().map((object) => object.properties._data.item);
+            setClustererItems(items);
+
+            setIsClustererMenuOpen(true);
+        },
+        [setClustererItems, setIsClustererMenuOpen]
+    );
+
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    const onClusterMenuClick =  useCallback((item: FacilityType) => {
+      setActiveItem(item);
+      setIsDrawerOpen(true);
+    }, [setActiveItem, setIsDrawerOpen])
 
     return (
         <>
@@ -77,6 +109,7 @@ export const MapObjects = ({
                 <meta name="title" content="Карта" />
             </Head>
             <main className={styles['MapObjects']}>
+                <ClustererMenu onItemClick={onClusterMenuClick} items={clustererItems} open={isClustererMenuOpen} />
                 <Sidebar
                     count={sportObjectsList?.count}
                     className={styles['Sidebar']}
@@ -99,14 +132,17 @@ export const MapObjects = ({
                         center: [59.964462, 30.460398],
                         zoom: 13,
                     }}
+                    _events={{
+                        actionbegin: () => setIsClustererMenuOpen(false),
+                        wheel: () => setIsClustererMenuOpen(false),
+                    }}
                 >
                     <ZoomControl options={{ position: { right: 20, top: '30vh' } }} />
                     <Clusterer
+                        onClick={onClustererClick}
                         options={{
-                            clusterIconColor: isLight ? '#59C2E7' : '#5F85DB',
+                            clusterIconColor: isLight ? '#7AD6F3' : '#90B8F8',
                             groupByCoordinates: false,
-                            hasBalloon: true,
-                            hasHint: true,
                         }}
                     >
                         {sportObjectsListAll?.facilities?.map((item) => (
@@ -117,6 +153,7 @@ export const MapObjects = ({
                                 geometry={[item.x, item.y]}
                                 properties={{
                                     hintContent: `<span className="map-hint">${item.name}</span>`,
+                                    item,
                                 }}
                                 options={{
                                     iconLayout: 'default#image',

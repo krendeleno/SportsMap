@@ -4,6 +4,8 @@ import { TextWithIcon } from 'src/client/shared/components/TextWithIcon';
 import { Toggle } from 'src/client/shared/components/Toggle';
 import { engToRusDay, WorkingHoursType } from 'src/client/shared/types/facilities';
 
+import { DAY_OF_WEEKS } from "./WorkingHours.constants";
+
 import styles from './WorkingHours.module.css';
 
 type WorkingHoursProps = {
@@ -23,7 +25,7 @@ export const WorkingHours = ({ hours }: WorkingHoursProps) => {
             </TextWithIcon>
             {isOpened && (
                 <ul className={styles['WorkingHours-Details']}>
-                    {Object.keys(hours).map((day) => (
+                    {DAY_OF_WEEKS.map((day) => (
                         <li className={styles['WorkingHours-DetailsItem']}>
                             <span className={styles['WorkingHours-Day']}>{engToRusDay[day]}</span>
                             <span className={styles['WorkingHours-Value']}>

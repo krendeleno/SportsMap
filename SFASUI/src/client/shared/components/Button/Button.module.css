@@ -17,12 +17,24 @@
     transition: 0.1s linear all;
 }
 
+.Button:active {
+    transform: scale(0.98);
+}
+
 .Button_default {
     background-color: var(--base-default-color);
 }
 
 .Button_active {
     background-color: var(--active-button-color);
+}
+
+.Button_default:hover {
+    background-color: var(--base-secondary-color);
+}
+
+.Button_active:hover {
+    background-color: var(--base-default-color);
 }
 
 .Button_clear {
@@ -72,6 +84,5 @@
     .Button {
         width: fit-content;
         padding: var(--padding-2xs) var(--padding-l);
-
     }
 }

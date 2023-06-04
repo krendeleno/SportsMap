@@ -7,7 +7,7 @@ import { Button } from 'src/client/shared/components/Button';
 import { TextWithIcon } from 'src/client/shared/components/TextWithIcon';
 import { SearchFacilities, useFacilitySearch } from 'src/client/shared/utils/api/facilities';
 import { useTheme } from 'src/client/shared/hooks/use-theme';
-import { pageRoutes } from "src/client/shared/routes";
+import { pageRoutes } from 'src/client/shared/routes';
 
 import { SEARCH_QUERY } from '../../Main.constants';
 
@@ -28,9 +28,12 @@ export const MapView = ({ initialFacilityObjects }: MapViewProps) => {
     const { isLight } = useTheme();
 
     return (
-        <motion.section className={styles['MapView']}  initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}>
+        <motion.section
+            className={styles['MapView']}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+        >
             <Map
                 width="100%"
                 height="849px"
@@ -44,7 +47,7 @@ export const MapView = ({ initialFacilityObjects }: MapViewProps) => {
 
                 <Clusterer
                     options={{
-                        clusterIconColor: isLight ? '#59C2E7' : '#5F85DB',
+                        clusterIconColor: isLight ? '#7AD6F3' : '#90B8F8',
                         groupByCoordinates: false,
                     }}
                 >

@@ -10,8 +10,6 @@ import { useTheme } from 'src/client/shared/hooks/use-theme';
 
 import { Accordeon } from 'src/client/screens/Catalog/components/ItemModal/components/Accordeon';
 
-import Close from 'public/icons/close.svg';
-
 import styles from './ItemModal.module.css';
 
 type ItemModalProps = {

@@ -36,6 +36,10 @@
     display: none;
 }
 
+.Sidebar-Drawer {
+    z-index: 1100;
+}
+
 @media (--viewport-tablet) {
     .Sidebar_desktop {
      display: initial;
