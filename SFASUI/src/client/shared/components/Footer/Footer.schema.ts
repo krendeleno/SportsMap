@@ -5,7 +5,7 @@ export function useSchema() {
   return useMemo(
     () =>
       object({
-        email: string().ensure().email('Введите валидную электронную почту').required('Это обязательное поле'),
+        email: string().ensure().email('Введите валидную электронную почту'),
       }),
     []
   );

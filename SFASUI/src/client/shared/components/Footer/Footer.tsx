@@ -68,7 +68,9 @@ export const Footer = () => {
                             <Button
                                 className={styles['Footer-Button']}
                                 text="Подписаться"
-                                onClick={formikStateAndHelpers.submitForm}
+                                onClick={
+                                    formikStateAndHelpers.values['email'] ? formikStateAndHelpers.submitForm : undefined
+                                }
                                 isLoading={formikStateAndHelpers.isSubmitting}
                             />
                         </FormikProvider>
