@@ -36,7 +36,7 @@
     },
     "scripts": {
         "deploy": "gh-pages -d build",
-        "dev": "next dev -p 3001 | local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3000 --target 3001",
+        "dev": "next dev -p 3001",
         "build": "next build",
         "start": "next start",
         "test:jest": "jest --config jest/jest.config.js",
