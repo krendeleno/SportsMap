@@ -44,7 +44,7 @@ export const Filters = ({ className }: FiltersProps) => {
             )}
             {activeTab === FiltersTab.PayingType && <CheckboxTab name="paying_type" items={payingTypes?.data || []} />}
 
-            {activeTab === FiltersTab.Owner && <CheckboxTab name="owner" items={owningTypes?.data || []} />}
+            {activeTab === FiltersTab.Owner && <CheckboxTab name="owning_type" items={owningTypes?.data || []} />}
             {activeTab === FiltersTab.Size && <InputTab items={SIZE_INPUTS} />}
             {activeTab === FiltersTab.Other && <InputTab items={OTHER_INPUTS} />}
             {activeTab && <Divider />}

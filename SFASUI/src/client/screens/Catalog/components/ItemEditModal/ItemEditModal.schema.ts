@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { object, string, number, boolean, array } from 'yup';
+import {useMemo} from 'react';
+import {object, string, number, boolean, array} from 'yup';
 
 export function useSchema() {
     return useMemo(

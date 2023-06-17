@@ -10,6 +10,8 @@ import { partialUpdateFacility } from 'src/client/shared/utils/api/facilities';
 import { apiRoutes } from 'src/client/shared/utils/api/apiRoutes';
 import { Notification } from 'src/client/shared/components/Notification';
 
+import {createWorkingHours} from "./ItemModifyModal.helpers";
+
 type UseSubmitHandlerProps = {
     onSuccess?: () => void;
     id: string;
@@ -21,7 +23,9 @@ export const useSubmitHandler = ({ onSuccess, id }: UseSubmitHandlerProps) => {
             try {
                 formikHelpers.setSubmitting(true);
 
-                await partialUpdateFacility(id, omit(fields, ['photo', 'id']));
+                const workingHours = createWorkingHours(fields.working_hours)
+
+                await partialUpdateFacility(id, omit({...fields, working_hours: workingHours}, ['photo', 'id']));
 
                 await mutate(`catalog${apiRoutes.facilitySearch}`);
                 toast(
