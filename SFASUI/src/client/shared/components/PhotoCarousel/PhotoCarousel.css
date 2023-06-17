@@ -1,12 +1,16 @@
 .slick-prev {
     left: 10px !important;
+    z-index: 10;
 }
 
 .slick-next {
     right: 20px !important;
 }
 
-.slick-prev {
-    z-index: 10;
+.slick-next svg, .slick-prev svg {
+    cursor: pointer;
 }
 
+.slick-next path, .slick-prev path, .slick-next rect, .slick-prev rect {
+    color: var(--base-default-color);
+}
