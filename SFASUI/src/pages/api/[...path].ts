@@ -18,14 +18,29 @@ export const config = {
         bodyParser: false,
     },
 };
-const session = new Session({ oauthToken: process.env.OAUTH as string });
-const loggerServiceClient = session.client(serviceClients.LogIngestionServiceClient);
+
+const createLogger = () => {
+    if (!process.env.OAUTH) {
+        return;
+    }
+
+    const session = new Session({ oauthToken: process.env.OAUTH });
+    const loggerServiceClient = session.client(serviceClients.LogIngestionServiceClient);
+
+    return loggerServiceClient;
+}
+
+const loggerServiceClient = createLogger();
 
 proxy.on('error', function (err, req) {
+    if (!process.env.LOG_GROUP_ID || !loggerServiceClient) {
+        return;
+    }
+
     loggerServiceClient.write(
         WriteRequest.fromPartial({
             destination: {
-                logGroupId: process.env.LOG_GROUP_ID as string,
+                logGroupId: process.env.LOG_GROUP_ID,
             },
             entries: [
                 {
@@ -47,10 +62,14 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
     proxyRes.on('end', function () {
         const body = Buffer.concat(bodyChunks).toString();
 
+        if (!process.env.LOG_GROUP_ID || !loggerServiceClient) {
+            return;
+        }
+
         loggerServiceClient.write(
             WriteRequest.fromPartial({
                 destination: {
-                    logGroupId: process.env.LOG_GROUP_ID as string,
+                    logGroupId: process.env.LOG_GROUP_ID,
                 },
                 entries: [
                     {
