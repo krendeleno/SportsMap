@@ -18,7 +18,8 @@ export const engToRusDay = {
     [WorkingDaysEnum.sunday]: 'Воскресенье',
 };
 
-export type WorkingHoursType = Record<WorkingDaysEnum, { open: true; since: string; to: string } | { open: false }>;
+export type WorkingHoursRecord = { open: true; since?: string; to?: string } | { open: false };
+export type WorkingHoursType = Record<WorkingDaysEnum, WorkingHoursRecord>;
 
 export type FacilityPhoto = {
     id: string;

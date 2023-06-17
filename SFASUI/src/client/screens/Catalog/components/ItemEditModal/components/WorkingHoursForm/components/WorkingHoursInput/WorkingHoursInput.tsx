@@ -13,14 +13,18 @@ type WorkingHoursInputProps = {
 };
 
 export const WorkingHoursInput = ({ day }: WorkingHoursInputProps) => {
-    const { setFieldValue } = useFormikContext();
-    const [isOpen, setIsOpen] = useState(false);
+    const { setFieldValue, values } = useFormikContext();
     const rusDay = useMemo(() => engToRusDay[day], []);
+    console.log(values)
+
+    const [isOpen, setIsOpen] = useState(Boolean(values?.working_hours?.[day]?.open));
 
     const handleSwitchChange = useCallback(
         (checked: boolean) => {
             setIsOpen(checked);
             setFieldValue(`working_hours.${day}.open`, checked);
+            setFieldValue(`working_hours.${day}.to`, undefined);
+            setFieldValue(`working_hours.${day}.since`, undefined);
         },
         [setIsOpen, setFieldValue, day]
     );

@@ -5,6 +5,7 @@ import { Toggle } from 'src/client/shared/components/Toggle';
 import { engToRusDay, WorkingHoursType } from 'src/client/shared/types/facilities';
 
 import { DAY_OF_WEEKS } from "./WorkingHours.constants";
+import { getWorkingHours } from "./WorkingHours.helpers";
 
 import styles from './WorkingHours.module.css';
 
@@ -29,7 +30,7 @@ export const WorkingHours = ({ hours }: WorkingHoursProps) => {
                         <li className={styles['WorkingHours-DetailsItem']}>
                             <span className={styles['WorkingHours-Day']}>{engToRusDay[day]}</span>
                             <span className={styles['WorkingHours-Value']}>
-                                {hours[day].open ? `${hours[day].since} - ${hours[day].to}` : 'Закрыто'}
+                                {getWorkingHours(hours[day])}
                             </span>
                         </li>
                     ))}

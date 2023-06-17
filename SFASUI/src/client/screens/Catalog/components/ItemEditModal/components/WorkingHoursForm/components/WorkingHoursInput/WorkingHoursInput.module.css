@@ -4,6 +4,7 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: var(--space-l);
+    min-height: 38px;
 }
 
 .WorkingHoursInput-Input {
