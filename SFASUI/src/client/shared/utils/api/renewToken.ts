@@ -16,8 +16,6 @@ export const getAuthToken = async () => {
                     refresh_token: refreshTokenValue,
                 });
 
-                console.log(access_token);
-
                 setCookie('sportsmap_token', access_token);
                 setCookie('sportsmap_expiresIn', access_token_expires_in, {
                     maxAge: access_token_expires_in,

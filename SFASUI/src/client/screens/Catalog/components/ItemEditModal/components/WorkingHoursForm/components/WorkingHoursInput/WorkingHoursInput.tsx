@@ -15,7 +15,6 @@ type WorkingHoursInputProps = {
 export const WorkingHoursInput = ({ day }: WorkingHoursInputProps) => {
     const { setFieldValue, values } = useFormikContext();
     const rusDay = useMemo(() => engToRusDay[day], []);
-    console.log(values)
 
     const [isOpen, setIsOpen] = useState(Boolean(values?.working_hours?.[day]?.open));
 
