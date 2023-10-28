@@ -19,12 +19,14 @@ export const getServerSideProps: GetServerSideProps<MapPageProps> = async ({ que
 
     const searchQuery = getSearchQuery(query);
 
-    const facilityObjects = await searchFacility(
-        { ...searchQuery, hidden: isLogged ? undefined : false, limit: undefined, offset: undefined },
-        'https://sportsmap.spb.ru/'
-    );
+    const facilityObjects = await searchFacility({
+        ...searchQuery,
+        hidden: isLogged ? undefined : false,
+        limit: undefined,
+        offset: undefined,
+    });
 
-    const facilityObjectsQuery = await searchFacility(searchQuery, 'https://sportsmap.spb.ru/');
+    const facilityObjectsQuery = await searchFacility(searchQuery);
 
     return {
         props: { data: { facilityObjects, facilityObjectsQuery } },

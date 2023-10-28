@@ -6,7 +6,7 @@ import { ExtendedNextPage } from 'src/client/shared/types/next';
 import { Catalog, catalogLayoutRenderer, CatalogPageProps } from 'src/client/screens/Catalog';
 
 import NextError from 'src/pages/_error';
-import {  searchFacility } from "src/client/shared/utils/api/facilities";
+import { searchFacility } from 'src/client/shared/utils/api/facilities';
 import { getSearchQuery } from 'src/client/screens/Catalog/Catalog.helpers';
 
 type SearchPageProps = {
@@ -17,7 +17,7 @@ type SearchPageProps = {
 export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({ query }) => {
     const searchQuery = getSearchQuery(query);
 
-    const facilityObjects = await searchFacility(searchQuery, 'https://sportsmap.spb.ru/');
+    const facilityObjects = await searchFacility(searchQuery);
 
     return {
         props: { data: { facilityObjects } },

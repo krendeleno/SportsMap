@@ -10,8 +10,8 @@ export const createFacility = (body: CreateFacility.Body) => {
     });
 };
 
-export const searchFacility = (body: SearchFacilities.Body, prefix?: string) => {
-    return fetch<SearchFacilities.Response>(`${prefix}${apiRoutes.facilitySearch}`, {
+export const searchFacility = (body: SearchFacilities.Body) => {
+    return fetch<SearchFacilities.Response>(apiRoutes.facilitySearch, {
         method: 'POST',
         data: body,
     });

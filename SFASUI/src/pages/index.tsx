@@ -1,11 +1,11 @@
 import { GetStaticProps, NextPage } from 'next';
 import React from 'react';
 
-import { Main, MainScreenPageProps } from "src/client/screens/Main";
+import { Main, MainScreenPageProps } from 'src/client/screens/Main';
 
 import NextError from 'src/pages/_error';
-import { searchFacility } from "src/client/shared/utils/api/facilities";
-import { SEARCH_QUERY } from "src/client/screens/Main/Main.constants";
+import { searchFacility } from 'src/client/shared/utils/api/facilities';
+import { SEARCH_QUERY } from 'src/client/screens/Main/Main.constants';
 
 type MainPageProps = {
     data?: MainScreenPageProps;
@@ -13,7 +13,7 @@ type MainPageProps = {
 };
 
 export const getStaticProps: GetStaticProps<MainPageProps> = async () => {
-    const facilityObjects = await searchFacility(SEARCH_QUERY, 'https://sportsmap.spb.ru/');
+    const facilityObjects = await searchFacility(SEARCH_QUERY);
 
     return {
         props: { data: { facilityObjects } },

@@ -13,3 +13,5 @@ export const IS_CLIENT = !IS_SERVER;
  * Задается в next.config.js
  */
 export const BASE_PATH = process.env.BASE_PATH;
+export const BACKEND = process.env.BACKEND;
+export const BACKEND_FULL = process.env.BACKEND_FULL;

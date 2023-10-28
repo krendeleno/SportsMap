@@ -1,43 +1,43 @@
-const BACKEND_URL = 'api';
+const BACKEND_PREFIX = 'api';
 
 export const apiRoutes = {
-    login: `${BACKEND_URL}/user/login`,
-    resfreshToken: `${BACKEND_URL}/user/token/refresh`,
+    login: `${BACKEND_PREFIX}/user/login`,
+    resfreshToken: `${BACKEND_PREFIX}/user/token/refresh`,
     refreshPassword(token: string) {
-        return `${BACKEND_URL}/user/password-refresh/${token}`;
+        return `${BACKEND_PREFIX}/user/password-refresh/${token}`;
     },
 
-    user: `${BACKEND_URL}/user`,
+    user: `${BACKEND_PREFIX}/user`,
     users(id: number) {
-        return `${BACKEND_URL}/user/${id}`;
+        return `${BACKEND_PREFIX}/user/${id}`;
     },
 
-    facility: `${BACKEND_URL}/facility`,
-    facilitySearch: `${BACKEND_URL}/facility/search`,
+    facility: `${BACKEND_PREFIX}/facility`,
+    facilitySearch: `${BACKEND_PREFIX}/facility/search`,
     facilities(id: string) {
-        return `${BACKEND_URL}/facility/${id}`;
+        return `${BACKEND_PREFIX}/facility/${id}`;
     },
 
-    facilityType: `${BACKEND_URL}/facility-type`,
-    facilityCoveringType: `${BACKEND_URL}/facility-covering-type`,
-    facilityPayingType: `${BACKEND_URL}/facility-paying-type`,
-    facilityOwningType: `${BACKEND_URL}/facility-owning-type`,
-    facilityAge: `${BACKEND_URL}/facility-age`,
+    facilityType: `${BACKEND_PREFIX}/facility-type`,
+    facilityCoveringType: `${BACKEND_PREFIX}/facility-covering-type`,
+    facilityPayingType: `${BACKEND_PREFIX}/facility-paying-type`,
+    facilityOwningType: `${BACKEND_PREFIX}/facility-owning-type`,
+    facilityAge: `${BACKEND_PREFIX}/facility-age`,
 
-    excelImport: `${BACKEND_URL}/excel/import`,
-    excelValidate: `${BACKEND_URL}/excel/validate`,
-    excelExport: `${BACKEND_URL}/excel/export`,
+    excelImport: `${BACKEND_PREFIX}/excel/import`,
+    excelValidate: `${BACKEND_PREFIX}/excel/validate`,
+    excelExport: `${BACKEND_PREFIX}/excel/export`,
 
     facilityPhoto(id: string) {
-        return `${BACKEND_URL}/facility/${id}/photo`;
+        return `${BACKEND_PREFIX}/facility/${id}/photo`;
     },
     facilityPhotoDelete(id: string, photoId: string) {
-        return `${BACKEND_URL}/facility/${id}/photo/${photoId}`;
+        return `${BACKEND_PREFIX}/facility/${id}/photo/${photoId}`;
     },
 
-    emailProposal: `${BACKEND_URL}/email/suggestions`,
-    emailNewObject: `${BACKEND_URL}/email/offer-object`,
-    emailSubscribe: `${BACKEND_URL}/email/subscribe`,
-    emailUnsubscribe: `${BACKEND_URL}/email/unsubscribe`,
-    newPassword: `${BACKEND_URL}/email/new-password`,
+    emailProposal: `${BACKEND_PREFIX}/email/suggestions`,
+    emailNewObject: `${BACKEND_PREFIX}/email/offer-object`,
+    emailSubscribe: `${BACKEND_PREFIX}/email/subscribe`,
+    emailUnsubscribe: `${BACKEND_PREFIX}/email/unsubscribe`,
+    newPassword: `${BACKEND_PREFIX}/email/new-password`,
 };

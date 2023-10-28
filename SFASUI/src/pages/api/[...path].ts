@@ -4,6 +4,7 @@ import { cloudApi, serviceClients, Session } from '@yandex-cloud/nodejs-sdk';
 import { LogLevel_Level } from '@yandex-cloud/nodejs-sdk/dist/generated/yandex/cloud/logging/v1/log_entry';
 
 import { getLogStatus } from 'src/client/shared/utils/logger';
+import { BACKEND_FULL } from 'src/client/shared/utils/environment';
 
 const {
     logging: {
@@ -11,7 +12,7 @@ const {
     },
 } = cloudApi;
 
-const API_URL = `https://sportsmap.spb.ru/new-api/v1`;
+const API_URL = BACKEND_FULL;
 const proxy = httpProxy.createProxyServer();
 export const config = {
     api: {
@@ -28,7 +29,7 @@ const createLogger = () => {
     const loggerServiceClient = session.client(serviceClients.LogIngestionServiceClient);
 
     return loggerServiceClient;
-}
+};
 
 const loggerServiceClient = createLogger();
 
@@ -87,7 +88,6 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
             })
         );
     });
-
 });
 
 export default async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
