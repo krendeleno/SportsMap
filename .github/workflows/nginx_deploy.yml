@@ -12,7 +12,7 @@ jobs:
         env:
           OAUTH: ${{ secrets.OAUTH }}
           REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
-          IMAGE_NAME: nginx
+          IMAGE_NAME: sportsmap-nginx
 
       - name: deploy-nginx
         run: sh ./nginx/deploy.sh
