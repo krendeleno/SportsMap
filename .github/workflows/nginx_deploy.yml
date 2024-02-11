@@ -1,0 +1,23 @@
+name: deploy
+
+on: push
+
+jobs:
+  deploy-certs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: get-nginx-version
+        run: sh ./SFASUI/scripts/get-version.sh
+        env:
+          OAUTH: ${{ secrets.OAUTH }}
+          REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
+          IMAGE_NAME: nginx
+
+      - name: deploy-nginx
+        run: sh ./nginx/deploy.sh
+        env:
+          OAUTH: ${{ secrets.OAUTH }}
+          CERTIFICATE_ID: ${{ secrets.CERTIFICATE_ID }}
+          REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
+          VERSION: ${{ env.NEW_VERSION }}
