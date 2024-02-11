@@ -15,7 +15,8 @@ jobs:
           IMAGE_NAME: sportsmap-nginx
 
       - name: deploy-nginx
-        run: sh ./nginx/deploy.sh
+        run: sh ./deploy.sh
+        working-directory: ./nginx
         env:
           OAUTH: ${{ secrets.OAUTH }}
           CERTIFICATE_ID: ${{ secrets.CERTIFICATE_ID }}
